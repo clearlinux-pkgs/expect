@@ -4,7 +4,7 @@
 #
 Name     : expect
 Version  : 5.45
-Release  : 12
+Release  : 13
 URL      : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Source0  : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Summary  : No detailed summary available
