@@ -4,15 +4,17 @@
 #
 Name     : expect
 Version  : 5.45
-Release  : 13
+Release  : 14
 URL      : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Source0  : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Public-Domain
 Requires: expect-bin
+Requires: expect-lib
 Requires: expect-doc
 BuildRequires : tcl
+BuildRequires : tcl-dev
 
 %description
 NOTE: ALPHA AND BETA RELEASES OF TCL/TK ARE NOT SUPPORTED!
@@ -31,7 +33,9 @@ bin components for the expect package.
 %package dev
 Summary: dev components for the expect package.
 Group: Development
+Requires: expect-lib
 Requires: expect-bin
+Provides: expect-devel
 
 %description dev
 dev components for the expect package.
@@ -45,23 +49,37 @@ Group: Documentation
 doc components for the expect package.
 
 
+%package lib
+Summary: lib components for the expect package.
+Group: Libraries
+
+%description lib
+lib components for the expect package.
+
+
 %prep
 %setup -q -n expect5.45
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484415984
 %configure --disable-static --with-tcl=/usr/lib64
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make TEST_VERBOSE=1 test
 
 %install
+export SOURCE_DATE_EPOCH=1484415984
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/expect5.45/libexpect5.45.so
 /usr/lib64/expect5.45/pkgIndex.tcl
 
 %files bin
@@ -97,3 +115,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc /usr/share/man/man1/*
 %doc /usr/share/man/man3/*
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/expect5.45/libexpect5.45.so
