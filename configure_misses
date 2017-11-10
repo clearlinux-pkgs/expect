@@ -1,0 +1,55 @@
+Configure miss: main in -lieee
+Configure miss: if 64bit support is requested
+Configure miss: if 64bit Sparc VIS support is requested
+Configure miss: build with symbols
+Configure miss: varargs.h usability
+Configure miss: varargs.h presence
+Configure miss: varargs.h
+Configure miss: sys/sysconfig.h usability
+Configure miss: sys/sysconfig.h presence
+Configure miss: sys/sysconfig.h
+Configure miss: sys/ptem.h usability
+Configure miss: sys/ptem.h presence
+Configure miss: sys/ptem.h
+Configure miss: sys/strredir.h usability
+Configure miss: sys/strredir.h presence
+Configure miss: sys/strredir.h
+Configure miss: sys/strpty.h usability
+Configure miss: sys/strpty.h presence
+Configure miss: sys/strpty.h
+Configure miss: sys/bsdtypes.h
+Configure miss: tm_tzadj in struct tm
+Configure miss: union wait
+Configure miss: getpseudotty
+Configure miss: getpseudotty in -lseq
+Configure miss: openpty
+Configure miss: if running Sequent running SVR4
+Configure miss: if running Mach
+Configure miss: if running MachTen
+Configure miss: if on Pyramid
+Configure miss: if on Apollo
+Configure miss: if on Interactive
+Configure miss: if stty reads stdout
+Configure miss: if running Solaris
+Configure miss: if WNOHANG requires _POSIX_SOURCE
+Configure miss: mask type of select
+Configure miss: if signals need to be re-armed
+Configure miss: if on Convex
+Configure miss: if on HP
+Configure miss: HP style pty allocation
+Configure miss: HP style pty trapping
+Configure miss: AIX new-style pty allocation
+Configure miss: SGI old-style pty allocation
+Configure miss: SCO style pty allocation
+Configure miss: libpts="-lpt" in -lpt
+Configure miss: OSF/1 style pty allocation
+Configure miss: struct sgttyb
+Configure miss: if TCGETS or TCGETA in termios.h
+Configure miss: if TIOCGWINSZ in termios.h
+Configure miss: Cray-style ptys
+Configure miss: _getpty
+Configure miss: getpty
+Configure miss: main in -lieee
+Configure miss: exp_clib.c:1479:5: warning: format not a string literal and no format arguments [-Wformat-security]
+
+Configure miss: exp_clib.c:1480:5: warning: format not a string literal and no format arguments [-Wformat-security]

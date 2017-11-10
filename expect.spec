@@ -4,7 +4,7 @@
 #
 Name     : expect
 Version  : 5.45
-Release  : 15
+Release  : 16
 URL      : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Source0  : http://downloads.sourceforge.net/expect/expect5.45.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ License  : Public-Domain
 Requires: expect-bin
 Requires: expect-lib
 Requires: expect-doc
+Requires: tcl
 BuildRequires : tcl
 BuildRequires : tcl-dev
 
@@ -61,8 +62,11 @@ lib components for the expect package.
 %setup -q -n expect5.45
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1484415984
+export SOURCE_DATE_EPOCH=1510290715
 %configure --disable-static --with-tcl=/usr/lib64
 make V=1  %{?_smp_mflags}
 
@@ -70,11 +74,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1484415984
+export SOURCE_DATE_EPOCH=1510290715
 rm -rf %{buildroot}
 %make_install
 
