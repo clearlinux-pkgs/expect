@@ -5,6 +5,8 @@ cgdb
 dejagnu
 findutils
 gcc
+gcc7
+gcc8
 gdb
 krb5
 libffi
@@ -14,4 +16,3 @@ libgfortran-compat-soname4
 ltrace
 procps-ng
 psmisc
-sof-crosstool-ng

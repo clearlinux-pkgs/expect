@@ -4,7 +4,7 @@
 #
 Name     : expect
 Version  : 5.45.4
-Release  : 24
+Release  : 25
 URL      : https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
 Source0  : https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
 Summary  : No detailed summary available
@@ -16,6 +16,7 @@ Requires: expect-man = %{version}-%{release}
 Requires: tcl
 BuildRequires : tcl
 BuildRequires : tcl-dev
+BuildRequires : tcl-staticdev
 
 %description
 NOTE: ALPHA AND BETA RELEASES OF TCL/TK ARE NOT SUPPORTED!
@@ -26,7 +27,6 @@ Introduction
 %package bin
 Summary: bin components for the expect package.
 Group: Binaries
-Requires: expect-man = %{version}-%{release}
 
 %description bin
 bin components for the expect package.
@@ -38,6 +38,7 @@ Group: Development
 Requires: expect-lib = %{version}-%{release}
 Requires: expect-bin = %{version}-%{release}
 Provides: expect-devel = %{version}-%{release}
+Requires: expect = %{version}-%{release}
 
 %description dev
 dev components for the expect package.
@@ -66,20 +67,28 @@ man components for the expect package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1539122472
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562974400
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --with-tcl=/usr/lib64
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1539122472
+export SOURCE_DATE_EPOCH=1562974400
 rm -rf %{buildroot}
 %make_install
 
