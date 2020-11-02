@@ -4,7 +4,7 @@
 #
 Name     : expect
 Version  : 5.45.4
-Release  : 25
+Release  : 26
 URL      : https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
 Source0  : https://sourceforge.net/projects/expect/files/Expect/5.45.4/expect5.45.4.tar.gz
 Summary  : No detailed summary available
@@ -62,20 +62,21 @@ man components for the expect package.
 
 %prep
 %setup -q -n expect5.45.4
+cd %{_builddir}/expect5.45.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562974400
+export SOURCE_DATE_EPOCH=1604357225
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --with-tcl=/usr/lib64
 make  %{?_smp_mflags}
@@ -88,9 +89,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1562974400
+export SOURCE_DATE_EPOCH=1604357225
 rm -rf %{buildroot}
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/mkpasswd
+rm -f %{buildroot}/usr/share/man/man1/mkpasswd.1
 
 %files
 %defattr(-,root,root,-)
@@ -98,7 +102,6 @@ rm -rf %{buildroot}
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/mkpasswd
 /usr/bin/autoexpect
 /usr/bin/autopasswd
 /usr/bin/cryptdir
@@ -123,7 +126,10 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/expect.h
+/usr/include/expect_comm.h
+/usr/include/expect_tcl.h
+/usr/include/tcldbg.h
 /usr/share/man/man3/libexpect.3
 
 %files lib
@@ -132,7 +138,6 @@ rm -rf %{buildroot}
 
 %files man
 %defattr(0644,root,root,0755)
-%exclude /usr/share/man/man1/mkpasswd.1
 /usr/share/man/man1/autoexpect.1
 /usr/share/man/man1/cryptdir.1
 /usr/share/man/man1/decryptdir.1

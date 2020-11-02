@@ -5,6 +5,9 @@ Configure miss: build with symbols
 Configure miss: varargs.h usability
 Configure miss: varargs.h presence
 Configure miss: varargs.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: sys/sysconfig.h usability
 Configure miss: sys/sysconfig.h presence
 Configure miss: sys/sysconfig.h
@@ -41,7 +44,7 @@ Configure miss: HP style pty trapping
 Configure miss: AIX new-style pty allocation
 Configure miss: SGI old-style pty allocation
 Configure miss: SCO style pty allocation
-Configure miss: libpts="-lpt" in -lpt
+Configure miss: SVR4 style pty allocation
 Configure miss: OSF/1 style pty allocation
 Configure miss: struct sgttyb
 Configure miss: if TCGETS or TCGETA in termios.h
